@@ -4,8 +4,8 @@
         <v-sheet class="pa-6 mb-4" rounded color="indigo-lighten-5" style='min-width:100%'>
             <div class="d-flex justify-space-between flex-grow-1 align-center">
                 <div>
-                    <span class="text-title-medium text-primary">{{ plan.title }} ({{ isYearly ? 'Yearly' : 'Monthly' }})</span>
-                    <!-- <v-btn text color="primary" @click="$emit('back', 2)">Change</v-btn> -->
+                    <div class="text-title-medium text-primary">{{ plan.title }} ({{ isYearly ? 'Yearly' : 'Monthly' }})</div>
+                    <v-btn class="pa-0 custom-underline text-grey" text variant="text" @click="$emit('back', 2)">Change</v-btn>
                 </div>
                 <span class="text-title-medium text-primary">${{ isYearly ? plan.yearlyAmt : plan.amount }}/{{ isYearly ? 'yr' : 'mo' }}</span>
             </div>
@@ -67,3 +67,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.custom-underline {
+  text-decoration: underline !important;
+  /* Optional: adds a nice gap between text and line */
+  text-underline-offset: 4px; 
+}
+</style>
