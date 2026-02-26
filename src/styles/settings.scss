@@ -1,0 +1,38 @@
+
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// Import Ubuntu fonts
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('@/assets/fonts/Ubuntu-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('@/assets/fonts/Ubuntu-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('@/assets/fonts/Ubuntu-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+body, .v-application {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+// https://vuetifyjs.com/features/sass-variables/
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
