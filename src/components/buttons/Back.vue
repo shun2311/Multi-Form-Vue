@@ -1,6 +1,6 @@
 <template>
     <v-btn
-        @click="back"
+        @click="stepStore.prevStep()"
         class="mt-auto rounded-lg"
         text="Go Back"
         color="primary"
@@ -9,14 +9,12 @@
 </template>
 
 <script>
+import { useStepStore } from '@/store/store'
 export default {        
-    props: {
-        step: Number
+    computed: {
+        stepStore() {
+            return useStepStore();
+        },
     },
-    methods: {
-        back() {
-            this.$emit('back', this.step - 1)       
-        } 
-    }
 }
 </script>  

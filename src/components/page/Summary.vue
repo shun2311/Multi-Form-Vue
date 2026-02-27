@@ -4,10 +4,10 @@
         <v-sheet class="pa-6 mb-4" rounded color="indigo-lighten-5" style='min-width:100%'>
             <div class="d-flex justify-space-between flex-grow-1 align-center">
                 <div>
-                    <div class="text-title-medium text-primary">{{ plan.title }} ({{ isYearly ? 'Yearly' : 'Monthly' }})</div>
-                    <v-btn class="pa-0 custom-underline text-grey" text variant="text" @click="$emit('back', 2)">Change</v-btn>
+                    <div class="text-title-medium text-primary">{{ selectedPlan.title }} ({{ isYearly ? 'Yearly' : 'Monthly' }})</div>
+                    <v-btn class="pa-0 custom-underline text-grey" text variant="text" @click="useStepStore.backToPlanSelection()">Change</v-btn>
                 </div>
-                <span class="text-title-medium text-primary">${{ isYearly ? plan.yearlyAmt : plan.amount }}/{{ isYearly ? 'yr' : 'mo' }}</span>
+                <span class="text-title-medium text-primary">${{ isYearly ? selectedPlan.yearlyAmt : selectedPlan.amount }}/{{ isYearly ? 'yr' : 'mo' }}</span>
             </div>
             <v-divider v-if="selectedAddons.length !== 0" class="my-6"></v-divider>
             <div>
@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="d-flex"> 
-            <Back class="mr-auto" :step="step" @back="(n) => $emit('back', n)"/>
-            <Next :valid="true" label="Confirm" :step="step" @next="(n) => $emit('next', n)"/>      
+            <Back class="mr-auto"/>
+            <Next :valid="true" label="Confirm"/>      
         </div>
 
     </div>
@@ -37,35 +37,44 @@
 import Header from '../Header.vue';
 import Back from '../buttons/Back.vue';
 import Next from '../buttons/Next.vue'; 
+import { useisYearly, usePlanStore, useAddonStore, useStepStore } from '@/store/store'
+
 export default {
-    props: {
-        step: Number,
-        addons: Array,
-        plan: Object,
-        isYearly: Boolean
-    },
     components: {
         Back,
         Next,
         Header    
     },
-    computed: { 
+    computed: {
+        isYearly() {
+            return useisYearly().isYearly;
+        },
+        planStore() {
+            return usePlanStore();
+        },
+        addonStore() {
+            return useAddonStore();
+        },
+        useStepStore() {
+            return useStepStore();
+        },
         selectedAddons() {
-            return this.addons.filter(addon => addon.selected);
-        }
+            return this.addonStore.selectedAddons();
+        },
+        selectedPlan() {
+            return this.planStore.selectedPlan();
+        },
     },
     methods: {
         calculateTotal() {
-            let total = this.isYearly ? this.plan.yearlyAmt : this.plan.amount;
-            this.addons.forEach(addon => {
-                if (addon.selected) {
-                    total += this.isYearly ? addon.yearlyAmt : addon.amount;
-                }
+            let total = this.isYearly ? this.selectedPlan.yearlyAmt : this.selectedPlan.amount;
+            this.selectedAddons.forEach(addon => {
+                total += this.isYearly ? addon.yearlyAmt : addon.amount;
             });
             return total;
         }
     }
-}
+    }
 </script>
 
 <style scoped>

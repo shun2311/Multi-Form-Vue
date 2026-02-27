@@ -11,12 +11,15 @@
 
 <script>
 import Step from './Step.vue'
+import { useStepStore } from '@/store/store'
 export default {
   components: {
     Step
   },
-  props: {
-    step: Number
+  computed: {
+    step() {
+      return useStepStore().step;
+    }
   },
   data() {
     return {

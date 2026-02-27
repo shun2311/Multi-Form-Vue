@@ -1,6 +1,6 @@
 <template>
     <v-btn
-      @click="nextStep"
+      @click="stepStore.nextStep()"
       :disabled="!valid"
       class="mt-auto rounded-lg"
       :text="label"
@@ -9,19 +9,20 @@
 </template>
 
 <script>
+import { useStepStore } from '@/store/store'
+
 export default {
   props: {
     valid: Boolean, 
-    step: Number,
     label: {
       type: String,
       default: 'Next Step'
     }
   },
-  methods: {
-    nextStep() {
-      this.$emit('next', this.step + 1)
-    }
-  }
+  computed: {
+    stepStore() {
+      return useStepStore();
+    },
+  },
 }
 </script>
