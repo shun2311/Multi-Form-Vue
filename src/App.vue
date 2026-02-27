@@ -11,27 +11,27 @@
         <Plan
           v-show="step === 2" 
           :step="step" 
-          :plans="plans"
-          @duration-selection="handleYearlySelection" 
-          @plan-selection="handlePlanSelection"
+          :plans="planStore.plans"
+          @duration-selection="isYearlyStore.handleYearlySelection" 
+          @plan-selection="planStore.handlePlanSelection"
           @back="(n) => step = n" 
           @next="(n) => step = n"
         />
         <Addons 
           v-show="step === 3" 
           :step="step" 
-          :isYearly="isYearly"
-          :addons="addons"
-          @addonSelection="handleAddonSelection"
+          :isYearly="isYearlyStore.isYearly"
+          :addons="addonsStore.addons"
+          @addonSelection="addonsStore.handleAddonSelection"
           @back="(n) => step = n" 
           @next="(n) => step = n"
         />
         <Summary 
           v-show="step === 4" 
           :step="step" 
-          :isYearly="isYearly"
+          :isYearly="isYearlyStore.isYearly"
           :plan="selectedPlan"
-          :addons="addons"
+          :addons="addonsStore.addons"
           @back="(n) => step = n" 
           @next="(n) => step = n"
         />
@@ -50,6 +50,8 @@ import Plan from './components/page/Plan.vue';
 import Addons from './components/page/Addons.vue';
 import Summary from './components/page/Summary.vue';
 import Confirmed from './components/page/Confirmed.vue';
+import { useisYearly, usePlanStore, useAddonStore } from '@/store/store'
+
 export default {
   components: {
     Steps,
@@ -61,64 +63,23 @@ export default {
   },
   computed: { 
       selectedPlan() {
-        return this.plans.find(plan => plan.selected === true);
+        return this.planStore.plans.find(plan => plan.selected === true);
+      },
+      planStore() {
+        return usePlanStore();
+      },
+      addonsStore() {
+        return useAddonStore(); 
+      },
+      isYearlyStore() {
+        return useisYearly();
       }
   },
   data() {
     return {
       step: 1,
-      isYearly: false,
-      plans: [
-          { id: 'arcade', title: 'Arcade', amount: 9, yearlyAmt: 90, img: '/src/assets/images/icon-arcade.svg', selected: true},
-          { id: 'advanced', title: 'Advanced', amount: 12, yearlyAmt: 120, img: '/src/assets/images/icon-advanced.svg', selected: false},
-          { id: 'pro', title: 'Pro', amount: 15, yearlyAmt: 150, img: '/src/assets/images/icon-pro.svg', selected: false}
-      ],
-      addons: [
-          {
-              id: 'online',
-              title: "Online service",
-              subtitle: "Access to multiplayer games",
-              selected: false,
-              amount: 1,
-              yearlyAmt: 10
-          },
-          {
-              id: 'storage',
-              title: "Larger storage",
-              subtitle: "Extra 1TB of cloud save",
-              selected: false,
-              amount: 2,
-              yearlyAmt: 20
-          },
-          {
-              id: 'profile',
-              title: "Customizable profile",
-              subtitle: "Custom theme on your profile",
-              selected: false,
-              amount: 2,
-              yearlyAmt: 20
-          }
-        ]
     }
   },
-  methods: {
-    handleYearlySelection(isYearly) {
-      this.isYearly = isYearly;
-    },
-    handlePlanSelection(planId) {
-        this.plans.forEach(plan => {
-            plan.selected = (plan.id === planId);
-        });
-    },
-    handleAddonSelection(addonId) {
-        this.addons.forEach(addon => {
-            if(addonId === addon.id) {
-                addon.selected = !addon.selected;
-            }
-        });
-    },
-  }
-
 }
 </script>
 
