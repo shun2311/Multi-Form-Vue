@@ -1,12 +1,16 @@
 <template>
-  <v-sheet class="rounded-lg" min-width="25%">
-    <v-img src="/src/assets/images/bg-sidebar-desktop.svg" cover>
+  <v-sheet v-if="!isMobile" class="rounded-lg" width="25%">
+    <v-img :src="'/src/assets/images/bg-sidebar-desktop.svg'" cover aspect-ratio="16/9">
       <div class="pa-16">
         <Step v-for="(step, index) in steps" :key="index" :icon="step.icon" :title="step.title"
-          :subtitle="step.subtitle" :color="step.color" />
+          :subtitle="step.subtitle" :color="step.color" :isMobile="isMobile" />
       </div>
-    </v-img>
+    </v-img> 
   </v-sheet>
+  <div v-else class="d-flex align-stretch justify-center my-10">
+    <Step class="mr-2" v-for="(step, index) in steps" :key="index" :icon="step.icon" :title="step.title"
+      :subtitle="step.subtitle" :color="step.color" :isMobile="isMobile" />
+  </div>
 </template>
 
 <script>
@@ -19,7 +23,10 @@ export default {
   computed: {
     step() {
       return useStepStore().step;
-    }
+    },
+    isMobile() {
+      return this.$vuetify.display.mobile;
+    },
   },
   data() {
     return {
@@ -53,11 +60,11 @@ export default {
   },
   watch: {
     step(newValue, oldValue) {
-      if(newValue < this.steps.length+1) {
+      if (newValue < this.steps.length + 1) {
         this.steps[oldValue - 1].icon = `mdi-numeric-${oldValue}-circle-outline`
-        this.steps[oldValue - 1].color= 'white'
+        this.steps[oldValue - 1].color = 'white'
         this.steps[newValue - 1].icon = `mdi-numeric-${newValue}-circle`
-        this.steps[newValue - 1].color= 'secondary'
+        this.steps[newValue - 1].color = 'secondary'
       }
     }
   }

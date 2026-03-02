@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-display-medium font-weight-black text-primary mb-4">{{title}}</div>
-        <div class="text-title-large font-weight-light text-grey mb-16">{{subtitle}}</div>
+        <div class="text-title-large font-weight-light text-grey" :class="isMobile ? 'mb-8' : 'mb-16'">{{subtitle}}</div>
     </div>
 </template>
 
@@ -10,7 +10,12 @@
 export default {
     props: {
         title: String,
-        subtitle: String
+        subtitle: String,
+    },
+    computed: {
+        isMobile() {
+            return this.$vuetify.display.mobile;
+        }
     }
 }
 </script>

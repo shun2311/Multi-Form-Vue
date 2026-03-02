@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <v-card :class="!isMobile ? 'pa-0 ma-0' : 'pa-10'" flat rounded>
         <Header title="Select Your Plan" subtitle="You have the option of monthly or yearly billing." />
-        <div class = "d-flex">
+        <div :class = "{'d-flex' : !isMobile }">
             <PlanCard 
                 v-for="(plan, index) in usePlanStore.plans" 
                 :key="plan.id"
                 class="flex-grow-1 flex-shrink-0"
-                :class="{ 'mr-6': index !== usePlanStore.plans.length - 1 }" 
+                :class="{ 'mr-6': index !== usePlanStore.plans.length - 1 && !isMobile }" 
                 :index="index"
                 :plan="plan"
             />
@@ -24,7 +24,7 @@
                 </span>
 
                 <v-switch
-                   :model-value="isYearly"
+                    :model-value="isYearly"
                     color="primary"
                     hide-details
                     inset
@@ -36,20 +36,16 @@
                 </span>
             </div>
             </v-card-item>
-         </v-card>
-        <div class="d-flex"> 
-            <Back class="mr-auto"/>
-            <Next :valid="selectedPlan !== null"/>      
-        </div>
-       
-    </div>
-       
+        </v-card>
+        <Bottom :valid="true"/>
+    </v-card>
 </template>
 
 <script>
 import Back from '../buttons/Back.vue';
 import Next from '../buttons/Next.vue';
 import Header from '../Header.vue';
+import Bottom from '../Bottom.vue';
 import { useisYearly, usePlanStore } from '@/store/store'
 import PlanCard from '../PlanCard.vue';
 export default {
@@ -57,7 +53,8 @@ export default {
         Back,
         Next, 
         Header,
-        PlanCard
+        PlanCard,
+        Bottom
     },
     computed: {
         selectedPlan() {
@@ -71,6 +68,9 @@ export default {
         },
         isYearly() {
             return useisYearly().isYearly;
+        },
+        isMobile() {
+            return this.$vuetify.display.mobile;
         }
     },
 }

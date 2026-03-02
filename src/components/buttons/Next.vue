@@ -2,7 +2,7 @@
     <v-btn
       @click="stepStore.nextStep()"
       :disabled="!valid"
-      class="mt-auto rounded-lg"
+      class="rounded-lg"
       :text="label"
       color="primary"
     ></v-btn>

@@ -1,7 +1,7 @@
 <template>
     <v-btn
         @click="stepStore.prevStep()"
-        class="mt-auto rounded-lg"
+        class="rounded-lg"
         text="Go Back"
         color="primary"
         variant="text"

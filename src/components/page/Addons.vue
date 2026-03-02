@@ -1,16 +1,13 @@
 <template>
-    <div>
-       <Header title="Pick Add-ons" subtitle="Add-ons help enhance your gaming experience." />
+    <v-card :class="!isMobile ? 'pa-0 ma-0' : 'pa-10'" flat rounded>
+       <Header title="Pick Add-ons" subtitle="Add-ons help enhance your gaming experience." :isMobile="isMobile" />
         <AddonCard 
             v-for="(addon) in addons" 
             :key="addon.title" 
             :addon="addon"
         />
-       <div class="d-flex"> 
-            <Back class="mr-auto"/>
-            <Next :valid="true"/>      
-        </div>
-    </div>
+        <Bottom :valid="true"/>
+    </v-card>
 </template>
 
 <script>
@@ -18,13 +15,15 @@ import Back from '../buttons/Back.vue';
 import Next from '../buttons/Next.vue'; 
 import Header from '../Header.vue';
 import AddonCard from '../AddonCard.vue';
+import Bottom from '../Bottom.vue';
 import { useisYearly, useAddonStore } from '@/store/store'
 export default {
     components: {
         Back,
         Next,
         Header,
-        AddonCard
+        AddonCard,
+        Bottom
     },
     computed: {
         addons() {
@@ -32,6 +31,9 @@ export default {
         },
         isYearlyStore() {
             return useisYearly();
+        },
+        isMobile() {
+            return this.$vuetify.display.mobile;
         },
     },
 }

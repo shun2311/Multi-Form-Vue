@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-card :class="!isMobile ? 'pa-0 ma-0' : 'pa-10'" flat rounded>
         <Header title="Finishing Up" subtitle="Double-check everything looks OK before confirming." />
         <v-sheet class="pa-6 mb-4" rounded color="indigo-lighten-5" style='min-width:100%'>
             <div class="d-flex justify-space-between flex-grow-1 align-center">
@@ -25,25 +25,23 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex"> 
-            <Back class="mr-auto"/>
-            <Next :valid="true" label="Confirm"/>      
-        </div>
-
-    </div>
+        <Bottom :valid="true"/>
+    </v-card>
 </template>
 
 <script>
 import Header from '../Header.vue';
 import Back from '../buttons/Back.vue';
 import Next from '../buttons/Next.vue'; 
+import Bottom from '../Bottom.vue';
 import { useisYearly, usePlanStore, useAddonStore, useStepStore } from '@/store/store'
 
 export default {
     components: {
         Back,
         Next,
-        Header    
+        Header,
+        Bottom
     },
     computed: {
         isYearly() {
@@ -64,6 +62,9 @@ export default {
         selectedPlan() {
             return this.planStore.selectedPlan();
         },
+        isMobile() {
+            return this.$vuetify.display.mobile;
+        }
     },
     methods: {
         calculateTotal() {
