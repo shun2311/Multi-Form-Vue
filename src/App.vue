@@ -3,21 +3,7 @@
     <v-main :class="isMobile ? 'd-flex flex-column' : 'd-flex'">
       <Steps :step="step"/>
       <div :class="isMobile ? 'ma-4' : 'ma-16 px-16'" :style="{ width: !isMobile ? '100%' : '' }">
-        <PersonalInfo 
-          v-if="step === 1" 
-        />
-        <Plan
-          v-else-if="step === 2" 
-        />
-        <Addons 
-          v-else-if="step === 3" 
-        />
-        <Summary 
-          v-else-if="step === 4"   
-        />
-        <Confirmed 
-          v-else-if="step === 5" 
-        />
+        <RouterView />
       </div>
     </v-main>
   </v-app>

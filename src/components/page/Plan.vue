@@ -37,7 +37,7 @@
             </div>
             </v-card-item>
         </v-card>
-        <Bottom :valid="true"/>
+        <Bottom :valid="true" link="/addons"/>
     </v-card>
 </template>
 

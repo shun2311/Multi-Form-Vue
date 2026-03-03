@@ -6,7 +6,7 @@
             :key="addon.title" 
             :addon="addon"
         />
-        <Bottom :valid="true"/>
+        <Bottom :valid="true" link="/summary"/>
     </v-card>
 </template>
 

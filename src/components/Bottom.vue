@@ -10,7 +10,7 @@
     </v-footer>  
     <div v-else class="d-flex"> 
         <Back class="mr-auto" v-if="step > 1"/>
-        <Next :valid="valid" :label="step === 4 ? 'Confirm' : 'Next Step'"/>      
+        <Next :valid="valid" :label="step === 4 ? 'Confirm' : 'Next Step'" :link="link"/>      
     </div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
             type: Boolean,
             default: false
         },
+        link: String
     },
     computed: {
         step() {

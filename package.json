@@ -15,7 +15,8 @@
     "@mdi/font": "7.4.47",
     "pinia": "^3.0.4",
     "vue": "^3.5.26",
-    "vuetify": "^4.0.0"
+    "vuetify": "^4.0.0",
+    "vue-router": "^4.x.x" 
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",

@@ -1,6 +1,6 @@
 <template>
     <v-btn
-      @click="stepStore.nextStep()"
+      @click="next()"
       :disabled="!valid"
       class="rounded-lg"
       :text="label"
@@ -17,12 +17,19 @@ export default {
     label: {
       type: String,
       default: 'Next Step'
-    }
+    },
+    link: String
   },
   computed: {
     stepStore() {
       return useStepStore();
     },
   },
+  methods: {
+    next() {
+      this.stepStore.nextStep();
+      this.$router.push(this.link)
+    }
+  }
 }
 </script>

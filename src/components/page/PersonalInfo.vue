@@ -10,7 +10,7 @@
                 :key="personalInfo.id" 
                 :field="personalInfo"
             />
-        <Bottom :valid="valid"/>
+        <Bottom :valid="valid" link="/plan"/>
         </v-form>
     </v-card>
 </template>

@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <Bottom :valid="true"/>
+        <Bottom :valid="true" link="/confirmation"/>
     </v-card>
 </template>
 

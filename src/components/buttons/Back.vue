@@ -1,6 +1,6 @@
 <template>
     <v-btn
-        @click="stepStore.prevStep()"
+        @click="back()"
         class="rounded-lg"
         text="Go Back"
         color="primary"
@@ -16,5 +16,11 @@ export default {
             return useStepStore();
         },
     },
+    methods: {
+        back() {
+            this.stepStore.prevStep();
+            this.$router.back()
+        }
+    }
 }
 </script>  
