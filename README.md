@@ -5,3 +5,5 @@ A simple multiform app created in Vue with Vuetify. Features:
 2) Summary of selected options. 
 3) Ensured state is preserved via pinia when switching pages.
 4) Navigation handled by vue-router. 
+
+Link: https://shun2311.github.io/Multi-Form-Vue/
