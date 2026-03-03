@@ -5,7 +5,7 @@
             <div class="d-flex justify-space-between flex-grow-1 align-center">
                 <div>
                     <div class="text-title-medium text-primary">{{ selectedPlan.title }} ({{ isYearly ? 'Yearly' : 'Monthly' }})</div>
-                    <v-btn class="pa-0 custom-underline text-grey" text variant="text" @click="useStepStore.backToPlanSelection()">Change</v-btn>
+                    <v-btn class="pa-0 custom-underline text-grey" text variant="text" @click="backToPlanSelection()">Change</v-btn>
                 </div>
                 <span class="text-title-medium text-primary">${{ isYearly ? selectedPlan.yearlyAmt : selectedPlan.amount }}/{{ isYearly ? 'yr' : 'mo' }}</span>
             </div>
@@ -73,6 +73,10 @@ export default {
                 total += this.isYearly ? addon.yearlyAmt : addon.amount;
             });
             return total;
+        },
+        backToPlanSelection() {
+            this.useStepStore.backToPlanSelection();
+            this.$router.push('/plan');
         }
     }
     }

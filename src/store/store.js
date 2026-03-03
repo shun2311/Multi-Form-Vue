@@ -101,7 +101,6 @@ export const usePlanStore = defineStore("planStore", {
         title: "Arcade",
         amount: 9,
         yearlyAmt: 90,
-        img: "/src/assets/images/icon-arcade.svg",
         selected: true,
       },
       {
@@ -109,7 +108,6 @@ export const usePlanStore = defineStore("planStore", {
         title: "Advanced",
         amount: 12,
         yearlyAmt: 120,
-        img: "/src/assets/images/icon-advanced.svg",
         selected: false,
       },
       {
@@ -117,7 +115,6 @@ export const usePlanStore = defineStore("planStore", {
         title: "Pro",
         amount: 15,
         yearlyAmt: 150,
-        img: "/src/assets/images/icon-pro.svg",
         selected: false,
       },
     ],
