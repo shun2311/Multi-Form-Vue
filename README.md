@@ -1,4 +1,7 @@
 # Multi-Form web app
 
-A simple multiform app created in Vue with Vuetify. Contains function such validation of email, phone number, selections and confirmation. Utilised vue js event handling to ensure state
-is preserved properly
+A simple multiform app created in Vue with Vuetify. Features:
+1) validation of email, phone number, selections.
+2) Summary of selected options. 
+3) Ensured state is preserved via pinia when switching pages.
+4) Navigation handled by vue-router. 
