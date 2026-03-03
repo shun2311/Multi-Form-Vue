@@ -10,7 +10,7 @@
         <template v-slot:prepend>
           <v-avatar size="40">
             <v-img
-              :src="plan.img"
+              :src="img"
             ></v-img>
           </v-avatar>
         </template>
@@ -25,8 +25,14 @@
     </v-card>
 </template>
 
+<script setup>
+import iconArcade from '@/assets/images/icon-arcade.svg'
+import iconAdvanced from '@/assets/images/icon-advanced.svg'
+import iconPro from '@/assets/images/icon-pro.svg'
+</script>
 <script>
 import { useisYearly, usePlanStore } from '@/store/store'
+
 export default {
     props: {
         plan: Object,
@@ -40,6 +46,16 @@ export default {
         },
         isMobile() {
             return this.$vuetify.display.mobile;
+        },
+        img() {
+            if (this.plan.id === 'arcade') {
+                return iconArcade;
+            } else if (this.plan.id === 'advanced') {
+                return iconAdvanced;
+            } else if (this.plan.id === 'pro') {
+                return iconPro;
+            }
+            return ''
         }
     }
 }

@@ -38,6 +38,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .main-full-height {
   height: 100%;
@@ -50,7 +51,7 @@ export default {
     left: 0;
     width: 100%;
     height: 25vh;
-    background-image: url('/src/assets/images/bg-sidebar-mobile.svg');
+    background-image: url('@/assets/images/bg-sidebar-mobile.svg');
     background-size: cover;
     background-position: center top; /* Ensure the top of the image stays visible */
     z-index: 0;

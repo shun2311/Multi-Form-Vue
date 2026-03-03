@@ -1,6 +1,6 @@
 <template>
   <v-sheet v-if="!isMobile" class="rounded-lg" width="25%">
-    <v-img :src="'/src/assets/images/bg-sidebar-desktop.svg'" cover aspect-ratio="16/9">
+    <v-img :src="sidebar" cover aspect-ratio="16/9">
       <div class="pa-16">
         <Step v-for="(step, index) in steps" :key="index" :icon="step.icon" :title="step.title"
           :subtitle="step.subtitle" :color="step.color" :isMobile="isMobile" />
@@ -12,6 +12,10 @@
       :subtitle="step.subtitle" :color="step.color" :isMobile="isMobile" />
   </div>
 </template>
+
+<script setup>
+import sidebar from '@/assets/images/bg-sidebar-desktop.svg'
+</script>
 
 <script>
 import Step from './Step.vue'

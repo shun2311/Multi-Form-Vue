@@ -6,7 +6,7 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/Multi-Form-Vue/',
+  base: process.env.NODE_ENV === "production" ? "/Multi-Form-Vue/" : "/",
   plugins: [
     Vue({
       template: { transformAssetUrls },
@@ -33,7 +33,7 @@ export default defineConfig({
   define: { 'process.env': {} },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('src', import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
     extensions: [
       '.js',
