@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force"
@@ -13,10 +14,11 @@
   "dependencies": {
     "@fontsource/roboto": "^5.2.9",
     "@mdi/font": "7.4.47",
+    "gh-pages": "^6.3.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.26",
-    "vuetify": "^4.0.0",
-    "vue-router": "^4.x.x" 
+    "vue-router": "^4.x.x",
+    "vuetify": "^4.0.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
